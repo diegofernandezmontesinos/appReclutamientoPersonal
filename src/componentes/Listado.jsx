@@ -1,19 +1,55 @@
+/* eslint-disable react/jsx-key */
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react'
+import Candidato from './Candidato';
+import { useDispatch, useSelector } from 'react-redux'
+import { agregarUnValor } from '../store/misSlices';
+import { Link } from 'react-router-dom';
 
 const Listado = () => {
-    const [candidatos, setCandidatos] = useState([])
+    const [candidatos, setCandidatos] = useState([]);
+    const listaTrabajadores=useSelector(state => state.misTrabajadores.trabajadores)
+    const dispatch= useDispatch();
 
     useEffect(()=>{
         fetch("https://randomuser.me/api/?results=6")
         .then((response) => response.json())
         .then((datos) => setCandidatos(datos.results))
     }, [])
+
+
+    const buscarUno=(indice)=>{
+        fetch("https://randomuser.me/api/?results=1")
+        .then((response) => response.json())
+        .then((datos) => {
+            const provisional=[...candidatos]
+            provisional[indice]={...datos.results[0]}
+            setCandidatos(provisional)
+        })
+
+    }
+
+    const guardarUno=(valor)=>{
+        dispatch(agregarUnValor(valor))
+    }
+
+
+
     return (
         <>
+        <div className="presentacion">
             {candidatos.map((valor,index)=>
-            <div>
-                {valor.name.first}
-            </div>)}
+            <Candidato valor={valor} index={index} onBuscarUno={buscarUno} onGuardarUno={guardarUno} />
+            )}
+           </div> 
+           <hr/>
+           <div className="candidatos">
+            {listaTrabajadores.map((valor, i) => 
+            <Link key={i} to='/gestion'><button>{valor.name.first} </button> </Link> 
+            )}
+            </div>     
+
+
         </>
     )
 }
