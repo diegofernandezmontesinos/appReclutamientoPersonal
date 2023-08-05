@@ -19,7 +19,7 @@ export const Candidato = ({valor, onBuscarUno, index, onGuardarUno}) => {
             </div>
             <div className="botones">
                 <button className="rojo" onClick={()=>onBuscarUno(index)}>Ocultar</button> 
-                <button className="verde" onClick={()=>onGuardarUno(valor)}>Guardar</button>
+                <button className="verde" onClick={()=>onGuardarUno(valor, index)}>Guardar</button>
             </div>
              
         </div>
