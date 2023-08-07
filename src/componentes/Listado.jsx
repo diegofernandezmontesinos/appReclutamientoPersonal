@@ -31,7 +31,7 @@ const Listado = () => {
 
     const guardarUno=(valor, index)=>{
         const nuevoValor={...valor, departamento:''}
-        dispatch(agregarUnValor(valor))
+        dispatch(agregarUnValor(nuevoValor))
         buscarUno(index)
     }
 

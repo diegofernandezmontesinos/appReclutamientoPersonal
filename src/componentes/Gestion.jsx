@@ -5,13 +5,13 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
 import Trabajador from './Trabajador'
-import { eliminarUnValor, modificarUnValor } from '../store/misSlices';
+import { eliminarUnValor, modificarUnValor, agregarUnValor } from '../store/misSlices';
 
 export const Gestion = () => {
   const dispatch=useDispatch();
 
-  const listaTrabajadores=useSelector(state => state.misTrabajadores.trabajadores );
-
+  const listaTrabajadores=useSelector(state => state.misTrabajadores.trabajadores )
+  
   const actualizar = (continente, index)=> {
     dispatch(modificarUnValor(
       {

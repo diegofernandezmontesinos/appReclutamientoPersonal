@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { createSlice } from "@reduxjs/toolkit";
 
 export const miSlice=createSlice({
